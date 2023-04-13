@@ -1,0 +1,17 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "1-connect-to-db"
+    },
+    {
+      "path": "2-simple-query-from-db"
+    },
+    {
+      "path": "3-update-db"
+    }
+  ],
+  "settings": {}
+}
