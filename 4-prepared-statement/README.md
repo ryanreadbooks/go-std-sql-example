@@ -1,0 +1,1 @@
+# Prepare statement用法

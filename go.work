@@ -4,4 +4,6 @@ use (
 	./1-connect-to-db
 	./2-simple-query-from-db
 	./3-update-db
+	./4-prepared-statement
+	./5-transaction
 )

@@ -1,4 +1,4 @@
-module github.com/ryanreadbooks/go-std-sql-example-3
+module github.com/ryanreadbooks/go-std-sql-example-4
 
 go 1.19
 

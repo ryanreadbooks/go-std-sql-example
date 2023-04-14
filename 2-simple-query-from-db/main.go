@@ -13,7 +13,7 @@ import (
 func SimpleQuery(db *sql.DB) {
 	fmt.Println("SimpleQuery...")
 	var rows *sql.Rows
-	var err error 
+	var err error
 	rows, err = db.Query("select * from student")
 	defer func() { _ = rows.Close() }() // 记得Close掉查询结果
 	if err != nil {
@@ -74,4 +74,5 @@ func main() {
 	}
 	SimpleQuery(db)
 	QueryWithParam(db)
+	fmt.Println("========================================")
 }

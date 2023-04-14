@@ -11,6 +11,12 @@
     },
     {
       "path": "3-update-db"
+    },
+    {
+      "path": "4-prepared-statement"
+    },
+    {
+      "path": "5-transaction"
     }
   ],
   "settings": {}
