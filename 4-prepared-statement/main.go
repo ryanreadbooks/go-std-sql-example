@@ -17,11 +17,11 @@ func StmtUsage1(db *sql.DB) {
 	// 这个Stmt对象是并发安全的
 	stmt, err := db.Prepare("insert into Student(SId, Sname, Sage, Ssex) values (?, ?, ?, ?)")
 	// 记得要关闭stmt对象
-	defer func() { _ = stmt.Close() }()
 	if err != nil {
 		fmt.Printf("db prepare err: %v\n", err)
 		return
 	}
+	defer func() { _ = stmt.Close() }()
 	// 然后这个stmt对象就可以反复使用了
 	stus := []struct {
 		id     string
@@ -55,13 +55,11 @@ func StmtUsage2(db *sql.DB) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancel()
 	stmt, err := db.PrepareContext(ctx, "select SId, Sname from Student where SId = ?")
-	if err == nil {
-		defer stmt.Close()
-	}
 	if err != nil {
 		log.Fatal(err)
 		return
 	}
+	defer stmt.Close()
 	ids := []string{"14", "15"}
 	for _, id := range ids {
 		if rows, err := stmt.Query(id); err == nil {
@@ -77,9 +75,11 @@ func StmtUsage2(db *sql.DB) {
 
 func StmtUsage3(db *sql.DB) {
 	stmt, err := db.Prepare("delete from Student where SId = ?")
-	if err == nil {
-		defer stmt.Close()
+	if err != nil {
+		fmt.Printf("err: %v\n", err)
+		return
 	}
+	defer stmt.Close()
 	ids := []string{"14", "15"}
 	for _, id := range ids {
 		stmt.Exec(id)
